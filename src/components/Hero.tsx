@@ -43,8 +43,6 @@ export default function Hero() {
             gyroControls: false,
             minHeight: 200,
             minWidth: 200,
-            scale: 1.0,
-            scaleMobile: 1.0,
             color1: 0x1e3a8a,
             color2: 0xf8fafc,
           });
