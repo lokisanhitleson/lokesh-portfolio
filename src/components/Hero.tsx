@@ -43,8 +43,7 @@ export default function Hero() {
             gyroControls: false,
             minHeight: 200,
             minWidth: 200,
-            color1: 0x1e3a8a,
-            color2: 0xf8fafc,
+            skyColor: 0x55c9fa,
           });
         }
       };
