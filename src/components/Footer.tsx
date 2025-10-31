@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 
 export default function Footer() {

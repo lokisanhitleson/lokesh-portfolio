@@ -1,9 +1,6 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-import { FaReact, FaNode, FaDatabase, FaDocker, FaAws } from "react-icons/fa";
-import { SiSolidity, SiMongodb, SiTypescript } from "react-icons/si";
 
 export default function About() {
   const skills = [
