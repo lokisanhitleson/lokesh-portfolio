@@ -72,7 +72,7 @@ export default function CertificateModal({ certificate, onClose }: CertificateMo
               />
             </div>
             <p className="text-sm text-gray-400 mt-2 text-center">
-              Note: If PDF doesn't load, click the download button below
+              Note: If PDF doesn&apos;t load, click the download button below
             </p>
           </div>
 

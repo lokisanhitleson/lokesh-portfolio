@@ -129,12 +129,12 @@ export default function CredentialsPage() {
               >
                 {/* Quote Icon */}
                 <div className="absolute top-4 right-4 text-purple-500/20 text-6xl font-serif leading-none">
-                  "
+                  &ldquo;
                 </div>
 
                 {/* Testimonial Text */}
                 <p className="text-gray-300 leading-relaxed mb-6 relative z-10 italic">
-                  "{testimonial.testimonial}"
+                  &ldquo;{testimonial.testimonial}&rdquo;
                 </p>
 
                 {/* Author Info */}

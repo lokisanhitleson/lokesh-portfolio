@@ -4,7 +4,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { color, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaArrowRight, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 declare global {
