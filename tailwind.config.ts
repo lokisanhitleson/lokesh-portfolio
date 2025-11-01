@@ -9,10 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#1e3a8a",
-        accent: "#06b6d4",
-        dark: "#0f172a",
-        light: "#f8fafc",
+        primary: "#67f8f7",
+        accent: "#67f8f7",
+        dark: "#05121c",
+        secondary: "#1a3e4a",
+        purple: {
+          400: "#e879f9",
+          500: "#c982ff",
+          600: "#a855f7",
+          800: "#7e22ce",
+          900: "#581c87",
+        },
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",

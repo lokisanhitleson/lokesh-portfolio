@@ -4,7 +4,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 import { FaArrowRight, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 declare global {
@@ -32,18 +32,22 @@ export default function Hero() {
     threeScript.onload = () => {
       // Load Vanta.js Clouds effect
       const vantaScript = document.createElement("script");
-      vantaScript.src = "/assets/js/vanta.clouds.min.js";
+      vantaScript.src = "/assets/js/vanta.net.min.js";
       vantaScript.onload = () => {
         // Initialize Vanta effect
         if (vantaRef.current && window.VANTA) {
-          vantaInstanceRef.current = window.VANTA.CLOUDS({
+          vantaInstanceRef.current = window.VANTA.NET({
             el: vantaRef.current,
             mouseControls: true,
             touchControls: true,
             gyroControls: false,
             minHeight: 200,
             minWidth: 200,
-            skyColor: 0x55c9fa,
+            backgroundColor: "#05121c",
+            color: "#67f8f7",
+            maxDistance: 18.0,
+            spacing: 20.0,
+            showDots: true,
           });
         }
       };
@@ -97,16 +101,18 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-5xl md:text-6xl font-bold text-primary-active leading-tight"
+              className="text-5xl md:text-6xl font-bold leading-tight"
             >
-              Lead Full Stack <span className="gradient-text">Developer</span>
+              <span className="bg-gradient-to-r from-[#67f8f7] via-purple-400 to-purple-500 bg-clip-text text-transparent">
+                Lead Full Stack Developer
+              </span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-lg text-gray-600 leading-relaxed"
+              className="text-lg text-gray-300 leading-relaxed"
             >
               Building scalable healthcare & fintech solutions with 11+ years of expertise. Specialized in React Native, Node.js, Web3, and cloud infrastructure.
             </motion.p>
@@ -120,16 +126,18 @@ export default function Hero() {
             >
               <Link
                 href="/projects"
-                className="px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all font-semibold flex items-center justify-center gap-2 group"
+                className="px-8 py-3 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-semibold flex items-center justify-center gap-2 group"
               >
                 View My Work
                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/contact"
-                className="px-8 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary/5 transition-all font-semibold"
+                className="relative bg-gradient-to-r from-purple-500 to-[#67f8f7] p-[1px] rounded-lg group overflow-hidden"
               >
-                Get In Touch
+                <span className="relative block px-8 py-3 bg-[#05121c] rounded-[7px] font-semibold text-white group-hover:bg-transparent transition-all">
+                  Get In Touch
+                </span>
               </Link>
             </motion.div>
 
@@ -144,7 +152,7 @@ export default function Hero() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-lg bg-gray-100 hover:bg-accent hover:text-white transition-all text-primary text-xl"
+                className="p-3 rounded-lg bg-secondary hover:bg-accent hover:text-white transition-all text-primary text-xl"
               >
                 <FaGithub />
               </a>
@@ -152,13 +160,13 @@ export default function Hero() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-lg bg-gray-100 hover:bg-accent hover:text-white transition-all text-primary text-xl"
+                className="p-3 rounded-lg bg-secondary hover:bg-accent hover:text-white transition-all text-primary text-xl"
               >
                 <FaLinkedin />
               </a>
               <a
                 href="mailto:lokesh603@gmail.com"
-                className="p-3 rounded-lg bg-gray-100 hover:bg-accent hover:text-white transition-all text-primary text-xl"
+                className="p-3 rounded-lg bg-secondary hover:bg-accent hover:text-white transition-all text-primary text-xl"
               >
                 <FaEnvelope />
               </a>
@@ -206,12 +214,12 @@ export default function Hero() {
                   />
                   <defs>
                     <linearGradient id="gradientOuter" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#1e3a8a" />
-                      <stop offset="100%" stopColor="#06b6d4" />
+                      <stop offset="0%" stopColor="#67f8f7" />
+                      <stop offset="100%" stopColor="#67f8f7" />
                     </linearGradient>
                     <linearGradient id="gradientInner" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#06b6d4" />
-                      <stop offset="100%" stopColor="#1e3a8a" />
+                      <stop offset="0%" stopColor="#67f8f7" />
+                      <stop offset="100%" stopColor="#67f8f7" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -229,7 +237,7 @@ export default function Hero() {
                     ease: "easeInOut",
                   }}
                   style={{
-                    background: "radial-gradient(ellipse at center, rgba(6, 182, 212, 0.2) 0%, transparent 70%)",
+                    background: "radial-gradient(ellipse at center, rgba(103, 248, 247, 0.2) 0%, transparent 70%)",
                   }}
                 />
 
@@ -245,9 +253,9 @@ export default function Hero() {
                     ease: "easeInOut",
                   }}
                 >
-                  <div className="w-32 h-32 bg-gradient-to-br from-primary to-accent rounded-full flex flex-col items-center justify-center shadow-lg ring-2 ring-white/20 pointer-events-auto">
-                    <div className="text-5xl font-bold text-white">11+</div>
-                    <div className="text-xs text-white/80 text-center mt-2">Years</div>
+                  <div className="w-32 h-32 bg-gradient-to-br from-purple-800/60 to-purple-900 rounded-full flex flex-col items-center justify-center shadow-lg ring-2 ring-purple-500/30 pointer-events-auto">
+                    <div className="text-5xl font-bold text-white drop-shadow-lg">11+</div>
+                    <div className="text-xs text-white/90 text-center mt-2">Years</div>
                   </div>
                 </motion.div>
 
@@ -283,12 +291,12 @@ export default function Hero() {
                       <motion.div
                         whileHover={{ scale: 1.15 }}
                         transition={{ duration: 0.3 }}
-                        className="px-2 w-24 h-24 rounded-full bg-gradient-to-br from-white to-gray-50 shadow-md border-2 border-primary/20 flex flex-col items-center justify-center hover:border-accent/50 hover:shadow-lg transition-all cursor-pointer pointer-events-auto"
+                        className="px-2 w-24 h-24 rounded-full bg-gradient-to-br from-[#1a3e4a] to-[#05121c] shadow-md border-2 border-[#67f8f7]/20 flex flex-col items-center justify-center hover:border-[#67f8f7]/50 hover:shadow-lg transition-all cursor-pointer pointer-events-auto"
                       >
-                        <div className="text-3xl font-bold bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+                        <div className="text-3xl font-bold bg-gradient-to-r from-[#67f8f7] to-purple-500 bg-clip-text text-transparent">
                           {stat.number}
                         </div>
-                        <div className="text-xs text-gray-600 text-center mt-1.5 font-semibold px-1 leading-tight">
+                        <div className="text-xs text-gray-300 text-center mt-1.5 font-semibold px-1 leading-tight">
                           {stat.label}
                         </div>
                       </motion.div>

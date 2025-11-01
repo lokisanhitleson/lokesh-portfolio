@@ -140,7 +140,7 @@ export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <div className="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div className="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-primary">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -149,8 +149,12 @@ export default function ProjectsPage() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-primary mb-4">Featured Projects</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-purple-400 to-[#67f8f7] bg-clip-text text-transparent">
+              Featured Projects
+            </span>
+          </h1>
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
             Explore a selection of impactful projects spanning healthcare, fintech, logistics, and more
           </p>
         </motion.div>
@@ -164,7 +168,7 @@ export default function ProjectsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               onClick={() => setSelectedProject(project)}
-              className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all cursor-pointer group overflow-hidden"
+              className="bg-[#1a3e4a] rounded-lg border border-[#67f8f7]/20 hover:shadow-[0_0_30px_rgba(201,130,255,0.4)] hover:border-purple-500/50 transition-all cursor-pointer group overflow-hidden"
             >
               {/* Project Image Placeholder */}
               <div className="h-48 bg-gradient-to-br from-primary to-accent group-hover:opacity-80 transition-opacity flex items-center justify-center">
@@ -176,25 +180,25 @@ export default function ProjectsPage() {
 
               {/* Project Info */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-primary mb-2">{project.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">{project.shortDescription}</p>
+                <h3 className="text-xl font-bold text-[#67f8f7] mb-2">{project.title}</h3>
+                <p className="text-gray-300 text-sm mb-4">{project.shortDescription}</p>
 
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.slice(0, 3).map((tech, idx) => (
-                    <span key={idx} className="px-2 py-1 bg-accent/10 text-accent rounded text-xs font-medium">
+                    <span key={idx} className="px-2 py-1 bg-gradient-to-r from-purple-600/20 to-[#67f8f7]/20 text-purple-200 border border-purple-400/40 rounded text-xs font-medium">
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 3 && (
-                    <span className="px-2 py-1 bg-accent/10 text-accent rounded text-xs font-medium">
+                    <span className="px-2 py-1 bg-gradient-to-r from-purple-600/20 to-[#67f8f7]/20 text-purple-200 border border-purple-400/40 rounded text-xs font-medium">
                       +{project.technologies.length - 3} more
                     </span>
                   )}
                 </div>
 
                 {/* View Details Button */}
-                <button className="w-full px-4 py-2 bg-accent text-white rounded-lg hover:bg-accent/90 transition-all font-medium text-sm">
+                <button className="w-full px-4 py-2 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-medium text-sm">
                   View Details
                 </button>
               </div>
@@ -216,9 +220,9 @@ export default function ProjectsPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-[#1a3e4a] border border-[#67f8f7]/30 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             >
-              <div className="sticky top-0 bg-gradient-to-r from-primary to-accent p-6 text-white flex justify-between items-center">
+              <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-800 p-6 text-white flex justify-between items-center shadow-lg">
                 <h2 className="text-3xl font-bold">{selectedProject.title}</h2>
                 <button
                   onClick={() => setSelectedProject(null)}
@@ -231,35 +235,35 @@ export default function ProjectsPage() {
               <div className="p-8 space-y-6">
                 {/* Role */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-600 mb-2">MY ROLE</h3>
-                  <p className="text-gray-900">{selectedProject.role}</p>
+                  <h3 className="text-sm font-semibold text-[#67f8f7] mb-2">MY ROLE</h3>
+                  <p className="text-gray-300">{selectedProject.role}</p>
                 </div>
 
                 {/* Description */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-600 mb-2">DESCRIPTION</h3>
-                  <p className="text-gray-900 leading-relaxed">{selectedProject.description}</p>
+                  <h3 className="text-sm font-semibold text-[#67f8f7] mb-2">DESCRIPTION</h3>
+                  <p className="text-gray-300 leading-relaxed">{selectedProject.description}</p>
                 </div>
 
                 {/* Problem */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-600 mb-2">PROBLEM STATEMENT</h3>
-                  <p className="text-gray-900 leading-relaxed">{selectedProject.problem}</p>
+                  <h3 className="text-sm font-semibold text-[#67f8f7] mb-2">PROBLEM STATEMENT</h3>
+                  <p className="text-gray-300 leading-relaxed">{selectedProject.problem}</p>
                 </div>
 
                 {/* Solution */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-600 mb-2">SOLUTION</h3>
-                  <p className="text-gray-900 leading-relaxed">{selectedProject.solution}</p>
+                  <h3 className="text-sm font-semibold text-[#67f8f7] mb-2">SOLUTION</h3>
+                  <p className="text-gray-300 leading-relaxed">{selectedProject.solution}</p>
                 </div>
 
                 {/* Results */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-600 mb-3">RESULTS & IMPACT</h3>
+                  <h3 className="text-sm font-semibold text-[#67f8f7] mb-3">RESULTS & IMPACT</h3>
                   <ul className="space-y-2">
                     {selectedProject.results.map((result, idx) => (
-                      <li key={idx} className="flex gap-3 text-gray-900">
-                        <span className="text-accent font-bold">✓</span>
+                      <li key={idx} className="flex gap-3 text-gray-300">
+                        <span className="text-[#67f8f7] font-bold">✓</span>
                         <span>{result}</span>
                       </li>
                     ))}
@@ -268,10 +272,10 @@ export default function ProjectsPage() {
 
                 {/* Technologies */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-600 mb-3">TECH STACK</h3>
+                  <h3 className="text-sm font-semibold text-[#67f8f7] mb-3">TECH STACK</h3>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.technologies.map((tech, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium">
+                      <span key={idx} className="px-3 py-1 bg-gradient-to-r from-purple-600/20 to-[#67f8f7]/20 text-purple-200 border border-purple-400/40 rounded-full text-sm font-medium">
                         {tech}
                       </span>
                     ))}
@@ -279,13 +283,13 @@ export default function ProjectsPage() {
                 </div>
 
                 {/* Links */}
-                <div className="flex gap-4 pt-4 border-t">
+                <div className="flex gap-4 pt-4 border-t border-[#67f8f7]/20">
                   {selectedProject.github && (
                     <a
                       href={selectedProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all"
+                      className="flex items-center gap-2 px-4 py-2 bg-[#05121c] text-white border border-[#67f8f7]/30 rounded-lg hover:bg-[#67f8f7] hover:text-[#05121c] transition-all"
                     >
                       <FaGithub /> View Code
                     </a>
@@ -295,7 +299,7 @@ export default function ProjectsPage() {
                       href={selectedProject.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-lg hover:bg-accent/90 transition-all"
+                      className="flex items-center gap-2 px-4 py-2 bg-[#67f8f7] text-[#05121c] rounded-lg hover:bg-[#67f8f7]/90 transition-all"
                     >
                       <FaExternalLinkAlt /> Live Demo
                     </a>
