@@ -101,7 +101,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-5xl md:text-6xl font-bold leading-tight"
+              className="text-5xl md:text-6xl font-bold leading-tight backdrop-blur-sm bg-[#05121c]/50 p-4 rounded-xl border border-[#67f8f7]/10 inline-block"
             >
               <span className="bg-gradient-to-r from-[#67f8f7] via-purple-400 to-purple-500 bg-clip-text text-transparent">
                 Lead Full Stack Developer
@@ -112,7 +112,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-lg text-gray-300 leading-relaxed"
+              className="text-md text-gray-300 leading-relaxed backdrop-blur-sm bg-[#05121c]/40 p-3 rounded-xl border border-[#67f8f7]/10"
             >
               Building scalable healthcare & fintech solutions with 11+ years of expertise. Specialized in React Native, Node.js, Web3, and cloud infrastructure.
             </motion.p>
@@ -126,7 +126,7 @@ export default function Hero() {
             >
               <Link
                 href="/projects"
-                className="px-8 py-3 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-semibold flex items-center justify-center gap-2 group"
+                className="px-8 py-3 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-bold flex items-center justify-center gap-2 group"
               >
                 View My Work
                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -182,6 +182,16 @@ export default function Hero() {
               className="hidden md:flex relative pointer-events-none justify-center items-center h-96"
             >
               <div className="relative w-96 h-80 flex items-center justify-center">
+                {/* Dark Background Circle to hide Vanta inside */}
+                <div className="absolute w-full h-full flex items-center justify-center">
+                  <div
+                    className="absolute w-[340px] h-[260px] rounded-full"
+                    style={{
+                      background: "radial-gradient(ellipse at center, rgba(5, 18, 28, 0.95) 0%, rgba(5, 18, 28, 0.85) 50%, rgba(5, 18, 28, 0.3) 75%, transparent 100%)"
+                    }}
+                  />
+                </div>
+
                 {/* Decorative Oval Rings SVG */}
                 <svg
                   className="absolute w-full h-full"
@@ -197,8 +207,8 @@ export default function Hero() {
                     ry="120"
                     fill="none"
                     stroke="url(#gradientOuter)"
-                    strokeWidth="1"
-                    opacity="0.3"
+                    strokeWidth="2"
+                    opacity="0.6"
                   />
                   {/* Inner Oval Ring */}
                   <ellipse
@@ -208,18 +218,19 @@ export default function Hero() {
                     ry="100"
                     fill="none"
                     stroke="url(#gradientInner)"
-                    strokeWidth="0.5"
-                    opacity="0.2"
+                    strokeWidth="1.5"
+                    opacity="0.4"
                     strokeDasharray="5,5"
                   />
                   <defs>
                     <linearGradient id="gradientOuter" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#67f8f7" />
+                      <stop offset="50%" stopColor="#a855f7" />
                       <stop offset="100%" stopColor="#67f8f7" />
                     </linearGradient>
                     <linearGradient id="gradientInner" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#67f8f7" />
-                      <stop offset="100%" stopColor="#67f8f7" />
+                      <stop offset="100%" stopColor="#a855f7" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -229,7 +240,7 @@ export default function Hero() {
                   className="absolute inset-0 rounded-full pointer-events-none"
                   animate={{
                     scale: [1, 1.08, 1],
-                    opacity: [0.15, 0.3, 0.15],
+                    opacity: [0.2, 0.4, 0.2],
                   }}
                   transition={{
                     duration: 4,
@@ -237,7 +248,7 @@ export default function Hero() {
                     ease: "easeInOut",
                   }}
                   style={{
-                    background: "radial-gradient(ellipse at center, rgba(103, 248, 247, 0.2) 0%, transparent 70%)",
+                    background: "radial-gradient(ellipse at center, rgba(103, 248, 247, 0.15) 0%, transparent 60%)",
                   }}
                 />
 

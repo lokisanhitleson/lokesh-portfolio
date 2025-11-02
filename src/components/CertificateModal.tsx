@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Certificate } from "@/data/credentials";
 
 interface CertificateModalProps {
@@ -25,18 +26,35 @@ export default function CertificateModal({ certificate, onClose }: CertificateMo
         className="bg-[#1a3e4a] border border-[#67f8f7]/30 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
       >
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-800 p-6 text-white flex justify-between items-center shadow-lg">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold">{certificate.title}</h2>
-            <p className="text-sm text-white/80 mt-1">{certificate.issuer} • {certificate.date}</p>
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-800 p-6 text-white shadow-lg">
+          <div className="flex justify-between items-start">
+            <div className="flex gap-4 items-start flex-1">
+              {/* Issuer Logo */}
+              <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center p-2 shadow-md flex-shrink-0">
+                <Image
+                  src={certificate.logo}
+                  alt={`${certificate.issuer} logo`}
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
+              {/* Title & Info */}
+              <div className="flex-1">
+                <h2 className="text-2xl md:text-3xl font-bold">{certificate.title}</h2>
+                <p className="text-sm text-white/80 mt-1">{certificate.issuer} • {certificate.date}</p>
+              </div>
+            </div>
+
+            <button
+              onClick={onClose}
+              className="text-2xl hover:opacity-80 transition-opacity ml-4"
+              aria-label="Close modal"
+            >
+              ✕
+            </button>
           </div>
-          <button
-            onClick={onClose}
-            className="text-2xl hover:opacity-80 transition-opacity"
-            aria-label="Close modal"
-          >
-            ✕
-          </button>
         </div>
 
         <div className="p-6 md:p-8 space-y-6">
@@ -66,8 +84,8 @@ export default function CertificateModal({ certificate, onClose }: CertificateMo
             <h3 className="text-sm font-semibold text-[#67f8f7] mb-3">CERTIFICATE</h3>
             <div className="bg-[#05121c] rounded-lg overflow-hidden border border-[#67f8f7]/20">
               <iframe
-                src={certificate.pdfUrl}
-                className="w-full h-[500px] md:h-[600px]"
+                src={`${certificate.pdfUrl}#view=FitH&toolbar=0&navpanes=0`}
+                className="w-full h-[500px] md:h-[620px]"
                 title={`${certificate.title} PDF`}
               />
             </div>
@@ -81,7 +99,7 @@ export default function CertificateModal({ certificate, onClose }: CertificateMo
             <a
               href={certificate.pdfUrl}
               download
-              className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-medium text-center"
+              className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-bold text-center"
             >
               Download Certificate
             </a>

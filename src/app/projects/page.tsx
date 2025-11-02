@@ -198,7 +198,7 @@ export default function ProjectsPage() {
                 </div>
 
                 {/* View Details Button */}
-                <button className="w-full px-4 py-2 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-medium text-sm">
+                <button className="w-full px-4 py-2 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-bold text-sm">
                   View Details
                 </button>
               </div>
