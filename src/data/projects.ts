@@ -352,18 +352,21 @@ export const projects: Project[] = [
     ],
     screenshots: [
       {
-        url: "/projects/rungila/screenshot-1.jpg",
-        caption: "Assessment Interface",
+        url: "/assets/images/projects/rungila/institution dashboard.png",
+        caption: "Institution Dashboard",
       },
       {
-        url: "/projects/rungila/screenshot-2.jpg",
-        caption: "Career Recommendations",
+        url: "/assets/images/projects/rungila/student dashboard.png",
+        caption: "Student Dashboard",
       },
       {
-        url: "/projects/rungila/screenshot-3.jpg",
-        caption: "Analytics Dashboard",
+        url: "/assets/images/projects/rungila/CAREER interests.png",
+        caption: "Career Interests Assessment",
       },
-      { url: "/projects/rungila/screenshot-4.jpg", caption: "Student Portal" },
+      {
+        url: "/assets/images/projects/rungila/primary schol.png",
+        caption: "Assessment for Primary Schoolers",
+      },
     ],
     logo: "/assets/images/projects/rungila/logo square.png",
     banner: "/assets/images/projects/rungila/rungila-Logo rect.png",
@@ -507,7 +510,7 @@ export const projects: Project[] = [
       },
     ],
     logo: "/assets/images/projects/aster-dialer/aster dialer square.png",
-    banner: "/assets/images/projects/aster-dialer/aster dialer rec.jpeg",
+    banner: "/assets/images/projects/aster-dialer/aster dialer rect.jpeg",
     bannerBackground: "light",
     demo: "https://tevatel.com",
   },
