@@ -22,19 +22,25 @@ export default function ContactPage() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+    try {
+      setLoading(true);
+      const formData = new FormData(e.currentTarget);
+      formData.append("access_key", "ff56f803-9874-400a-9413-9a46c9111ba2");
 
-    // Simulate form submission
-    setTimeout(() => {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
       setSubmitted(true);
-      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
       setLoading(false);
-
-      // Reset after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1500);
+    }
   };
 
   return (
@@ -155,14 +161,11 @@ export default function ContactPage() {
             <div className="pt-8 border-t border-[#67f8f7]/20">
               <h3 className="text-lg font-semibold text-[#67f8f7] mb-4">Connect on Social</h3>
               <div className="flex gap-4">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all">
+                <a href="https://github.com/lokisanhitleson" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all">
                   GitHub
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all">
+                <a href="https://www.linkedin.com/in/lokeshtofficial" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all">
                   LinkedIn
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all">
-                  Twitter
                 </a>
               </div>
             </div>

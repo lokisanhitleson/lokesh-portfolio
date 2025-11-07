@@ -42,7 +42,7 @@
 
 - 30+ Technical Skills
 - 20+ Projects Delivered
-- 50+ Team Members Mentored
+- 40+ Team Members Mentored
 - 5 Different Tech Domains
 - 500+ Healthcare Facilities Served
 - $5M+ Total Value Locked (DeFi)
@@ -59,6 +59,7 @@
 ### Migration Summary
 
 **Original Light Theme:**
+
 - Primary background: `#ffffff` (white)
 - Card backgrounds: `#ffffff` (white)
 - Text: Dark colors on light backgrounds
@@ -66,6 +67,7 @@
 - Accent: Default Tailwind blues
 
 **New Dark Theme:**
+
 - Primary background: `#05121c` (very dark blue)
 - Card backgrounds: `#1a3e4a` (medium dark blue)
 - Primary text/accents: `#67f8f7` (bright cyan)
@@ -93,35 +95,49 @@
 ### Key Changes Made
 
 **1. Global CSS Updates (`/src/app/globals.css`):**
+
 ```css
 /* Added accent color definition */
---color-accent: var(--color-skyblue-400);  /* #67f8f7 */
+--color-accent: var(--color-skyblue-400); /* #67f8f7 */
 
 /* Added custom utility classes */
-.text-accent { color: var(--color-accent); }
-.bg-accent { background-color: var(--color-accent); }
-.bg-accent/10 { background-color: rgba(103, 248, 247, 0.1); }
-.border-accent { border-color: var(--color-accent); }
+.text-accent {
+  color: var(--color-accent);
+}
+.bg-accent {
+  background-color: var(--color-accent);
+}
+.bg-accent/10 {
+  background-color: rgba(103, 248, 247, 0.1);
+}
+.border-accent {
+  border-color: var(--color-accent);
+}
 
 /* Added cyan glow effects */
-.shadow-cyan-glow { box-shadow: 0 0 30px rgba(103, 248, 247, 0.3); }
-.hover\:shadow-cyan-glow:hover { box-shadow: 0 0 30px rgba(103, 248, 247, 0.3); }
+.shadow-cyan-glow {
+  box-shadow: 0 0 30px rgba(103, 248, 247, 0.3);
+}
+.hover\:shadow-cyan-glow:hover {
+  box-shadow: 0 0 30px rgba(103, 248, 247, 0.3);
+}
 ```
 
 **2. Color Replacements Across Components:**
 
-| Old Light Theme | New Dark Theme | Usage |
-|----------------|----------------|-------|
-| `bg-white` | `bg-[#1a3e4a]` | Cards, form containers |
-| `bg-white/5` | `bg-[#05121c]/95` | Navbar background |
-| `text-gray-900` | `text-[#67f8f7]` | Headings |
-| `text-gray-600` | `text-gray-300` | Body text |
-| `border-gray-300` | `border-[#67f8f7]/30` | Form inputs |
-| `border-gray-200` | `border-[#67f8f7]/20` | Dividers, mobile menu |
-| `bg-blue-600` | `bg-[#1a3e4a]` | Social buttons |
-| `bg-accent/10 text-accent` | `bg-[#05121c] text-[#67f8f7] border-[#67f8f7]/30` | Technology tags |
+| Old Light Theme            | New Dark Theme                                    | Usage                  |
+| -------------------------- | ------------------------------------------------- | ---------------------- |
+| `bg-white`                 | `bg-[#1a3e4a]`                                    | Cards, form containers |
+| `bg-white/5`               | `bg-[#05121c]/95`                                 | Navbar background      |
+| `text-gray-900`            | `text-[#67f8f7]`                                  | Headings               |
+| `text-gray-600`            | `text-gray-300`                                   | Body text              |
+| `border-gray-300`          | `border-[#67f8f7]/30`                             | Form inputs            |
+| `border-gray-200`          | `border-[#67f8f7]/20`                             | Dividers, mobile menu  |
+| `bg-blue-600`              | `bg-[#1a3e4a]`                                    | Social buttons         |
+| `bg-accent/10 text-accent` | `bg-[#05121c] text-[#67f8f7] border-[#67f8f7]/30` | Technology tags        |
 
 **3. Enhanced Visual Effects:**
+
 - Added cyan glow on card hover: `hover:shadow-[0_0_30px_rgba(103,248,247,0.3)]`
 - Updated focus states to use cyan: `focus:border-[#67f8f7]`
 - Improved hover transitions for all interactive elements
@@ -129,6 +145,7 @@
 ### Design Philosophy
 
 The dark theme was chosen to:
+
 1. **Reduce eye strain** - Easier on the eyes during extended viewing
 2. **Modern aesthetic** - Aligns with contemporary web design trends
 3. **Professional appearance** - Dark themes are popular in tech portfolios
@@ -138,11 +155,13 @@ The dark theme was chosen to:
 ### Technical Decisions
 
 **Why these specific colors?**
+
 - **#05121c (Very Dark Blue):** Deep enough to feel dark, blue tint adds warmth over pure black
 - **#1a3e4a (Medium Dark Blue):** Provides elevation for cards without being too light
 - **#67f8f7 (Bright Cyan):** High contrast, energetic, tech-forward, excellent for CTAs
 
 **Color Accessibility:**
+
 - Contrast ratio between `#67f8f7` and `#05121c`: ~12.5:1 (WCAG AAA)
 - Contrast ratio between `#d1d5db` and `#05121c`: ~11.8:1 (WCAG AAA)
 - All text meets WCAG 2.1 Level AAA standards
@@ -159,24 +178,29 @@ The dark theme was chosen to:
 ### Before/After Comparison
 
 **Navbar:**
+
 - Before: `bg-white/5 border-gray-200`
 - After: `bg-[#05121c]/95 border-[#67f8f7]/20`
 
 **Contact Form:**
+
 - Before: `bg-white` container with `border-gray-300` inputs
 - After: `bg-[#1a3e4a]` container with `bg-[#05121c] border-[#67f8f7]/30` inputs
 
 **Project Cards:**
+
 - Before: `bg-white shadow-sm`
 - After: `bg-[#1a3e4a] border-[#67f8f7]/20 hover:shadow-[0_0_30px_rgba(103,248,247,0.3)]`
 
 **Technology Tags:**
+
 - Before: `bg-accent/10 text-accent`
 - After: `bg-[#05121c] text-[#67f8f7] border-[#67f8f7]/30`
 
 ### Future Enhancements
 
 Potential improvements for the dark theme:
+
 - [ ] Add theme toggle (dark/light mode switcher)
 - [ ] Implement theme persistence with localStorage
 - [ ] Add smooth theme transition animations
@@ -209,9 +233,9 @@ Potential improvements for the dark theme:
 
 ```css
 /* Primary Colors */
---primary-text: #67f8f7;     /* Bright Cyan - Main text and accents */
---primary-dark: #05121c;     /* Very Dark Blue - Main background */
---secondary-bg: #1a3e4a;     /* Medium Dark Blue - Secondary backgrounds */
+--primary-text: #67f8f7; /* Bright Cyan - Main text and accents */
+--primary-dark: #05121c; /* Very Dark Blue - Main background */
+--secondary-bg: #1a3e4a; /* Medium Dark Blue - Secondary backgrounds */
 
 /* RGB Versions (for opacity control) */
 --primary-text-rgb: 103, 248, 247;
@@ -220,30 +244,38 @@ Potential improvements for the dark theme:
 
 ### Color Usage Guide
 
-| Element | Color | Usage |
-|---------|-------|-------|
-| **Page Background** | `#05121c` | All page backgrounds |
-| **Primary Text** | `#67f8f7` | Headings, important text, CTAs |
-| **Secondary Text** | `#94a3b8` | Body text, descriptions |
-| **Hover States** | `#67f8f7` | All interactive elements |
-| **Card Backgrounds** | `#1a3e4a` | Cards, sections, elevated surfaces |
-| **Borders** | `#67f8f7` with opacity | Subtle borders and dividers |
-| **Gradients** | Purple to Cyan | Special accent elements |
+| Element              | Color                  | Usage                              |
+| -------------------- | ---------------------- | ---------------------------------- |
+| **Page Background**  | `#05121c`              | All page backgrounds               |
+| **Primary Text**     | `#67f8f7`              | Headings, important text, CTAs     |
+| **Secondary Text**   | `#94a3b8`              | Body text, descriptions            |
+| **Hover States**     | `#67f8f7`              | All interactive elements           |
+| **Card Backgrounds** | `#1a3e4a`              | Cards, sections, elevated surfaces |
+| **Borders**          | `#67f8f7` with opacity | Subtle borders and dividers        |
+| **Gradients**        | Purple to Cyan         | Special accent elements            |
 
 ### Tailwind CSS Custom Classes
 
 ```css
 /* Apply in components */
 .bg-primary        /* #05121c - Dark background */
+/* #05121c - Dark background */
+/* #05121c - Dark background */
+/* #05121c - Dark background */
+/* #05121c - Dark background */
+/* #05121c - Dark background */
+/* #05121c - Dark background */
+/* #05121c - Dark background */
 .bg-secondary      /* #1a3e4a - Secondary background */
 .text-primary      /* #67f8f7 - Cyan text */
 .gradient-text     /* Purple to cyan gradient text */
-.bg-opposite-gradient /* Purple to cyan gradient background */
+.bg-opposite-gradient; /* Purple to cyan gradient background */
 ```
 
 ### Extended Color Palette
 
 The `globals.css` defines a comprehensive skyblue palette (skyblue-900 to skyblue-1600) where:
+
 - **skyblue-1600** = `#05121c` (Primary dark)
 - **skyblue-1500** = `#1a3e4a` (Secondary)
 - **skyblue-50** = `#67f8f7` (Bright cyan)
@@ -256,9 +288,9 @@ The `globals.css` defines a comprehensive skyblue palette (skyblue-900 to skyblu
 --foreground: #67f8f7;
 
 /* Extended palette with RGB variants */
---skyblue-1600: 5 18 28;        /* Primary dark */
---skyblue-1500: 26 62 74;       /* Secondary */
---skyblue-50: 103 248 247;      /* Primary cyan */
+--skyblue-1600: 5 18 28; /* Primary dark */
+--skyblue-1500: 26 62 74; /* Secondary */
+--skyblue-50: 103 248 247; /* Primary cyan */
 /* ... and 20+ more shade variants */
 ```
 
@@ -352,6 +384,7 @@ lokesh-portfolio/
 **Purpose:** Main navigation header with responsive mobile menu
 
 **Features:**
+
 - Fixed position with backdrop blur
 - Logo with initials "LT"
 - Desktop navigation: Home, About, Skills, Projects, Contact
@@ -360,6 +393,7 @@ lokesh-portfolio/
 - Smooth scroll to sections
 
 **Color Usage:**
+
 ```tsx
 // Background with cyan accent
 className="bg-[#05121c]/95 backdrop-blur-md border-b border-[#67f8f7]/20"
@@ -372,6 +406,7 @@ hover:text-[#67f8f7]
 ```
 
 **State Management:**
+
 ```tsx
 const [isOpen, setIsOpen] = useState(false);
 ```
@@ -382,6 +417,7 @@ const [isOpen, setIsOpen] = useState(false);
 **Purpose:** Site footer with links and information
 
 **Features:**
+
 - 4-column grid layout (responsive)
 - About section with description
 - Quick links navigation
@@ -391,6 +427,7 @@ const [isOpen, setIsOpen] = useState(false);
 - Privacy/Terms links
 
 **Color Usage:**
+
 ```tsx
 // Background
 className="bg-[#1a3e4a] text-gray-300"
@@ -410,22 +447,24 @@ hover:text-[#67f8f7]
 **Purpose:** Landing section with 3D animated background
 
 **Features:**
+
 - **Vanta.js NET Effect:** Animated 3D network background
 - **Dynamic Script Loading:** Three.js and Vanta.js loaded at runtime
 - **Framer Motion Animations:** Text fade-in, slide-up effects
 - **Orbital Animation:** 5 stats cards orbiting around central badge
   - Center: "11+ Years" experience badge
-  - Orbiting: 30+ Skills, 20+ Projects, 50+ Mentored, 5 Domains
+  - Orbiting: 30+ Skills, 20+ Projects, 40+ Mentored, 5 Domains
 - **Social Links:** GitHub, LinkedIn, Email
 - **CTAs:** "View Work" and "Get In Touch" buttons
 
 **Vanta Configuration:**
+
 ```tsx
 VantaEffect.NET({
   el: vantaRef.current,
   THREE: THREE,
-  color: 0x67f8f7,              // Primary cyan
-  backgroundColor: 0x05121c,     // Primary dark
+  color: 0x67f8f7, // Primary cyan
+  backgroundColor: 0x05121c, // Primary dark
   maxDistance: 18.0,
   spacing: 20.0,
   showDots: true,
@@ -436,11 +475,13 @@ VantaEffect.NET({
 ```
 
 **Orbital Motion:**
+
 - Uses parametric ellipse equations
 - Smooth continuous animation (12s duration)
 - Complex oval path calculated via useEffect
 
 **Color Usage:**
+
 ```tsx
 // Background (via Vanta)
 backgroundColor: 0x05121c
@@ -459,6 +500,7 @@ border-[#67f8f7]
 **Purpose:** About section with skills and experience highlights
 
 **Features:**
+
 - Professional journey description
 - 5 core strengths list
 - 4 highlight stat cards (Projects, Skills, Experience, Mentored)
@@ -472,6 +514,7 @@ border-[#67f8f7]
 - Hover effects on skill tags
 
 **Color Usage:**
+
 ```tsx
 // Section background
 className="bg-[#05121c] text-white"
@@ -495,6 +538,7 @@ hover:bg-[#67f8f7] hover:text-[#05121c]
 **Purpose:** Main landing page
 
 **Structure:**
+
 ```tsx
 <main>
   <Hero />
@@ -508,6 +552,7 @@ hover:bg-[#67f8f7] hover:text-[#05121c]
 **Purpose:** Contact form and information display
 
 **Features:**
+
 - Controlled form with React state
 - Form fields: Name, Email, Subject, Message
 - Submit button with loading state
@@ -521,13 +566,20 @@ hover:bg-[#67f8f7] hover:text-[#05121c]
 - Form submission simulation (no backend yet)
 
 **State Management:**
+
 ```tsx
-const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+});
 const [submitted, setSubmitted] = useState(false);
 const [loading, setLoading] = useState(false);
 ```
 
 **Color Usage:**
+
 ```tsx
 // Page background
 className="min-h-screen bg-[#05121c] text-white"
@@ -549,6 +601,7 @@ className="bg-[#1a3e4a] border-[#67f8f7]"
 **Purpose:** Project showcase with detailed case studies
 
 **Features:**
+
 - Grid layout (3 columns desktop, 1-2 mobile)
 - 6 featured projects:
   1. **CareNEO** - Healthcare SaaS Platform
@@ -568,6 +621,7 @@ className="bg-[#1a3e4a] border-[#67f8f7]"
 - Hover animations on cards
 
 **Data Structure:**
+
 ```tsx
 interface Project {
   id: number;
@@ -585,6 +639,7 @@ interface Project {
 ```
 
 **Color Usage:**
+
 ```tsx
 // Page background
 className="min-h-screen bg-[#05121c] text-white"
@@ -606,6 +661,7 @@ className="bg-[#1a3e4a] border-[#67f8f7]"
 **Purpose:** Application root layout wrapper
 
 **Features:**
+
 - HTML lang attribute
 - Metadata and SEO configuration
 - Navbar (fixed at top)
@@ -614,6 +670,7 @@ className="bg-[#1a3e4a] border-[#67f8f7]"
 - Geist Sans font (Next.js default)
 
 **Metadata:**
+
 ```tsx
 export const metadata: Metadata = {
   title: "Lokesh T - Lead Full Stack Developer",
@@ -633,15 +690,16 @@ export const metadata: Metadata = {
 
 ### Route Structure
 
-| Route | Component | Description |
-|-------|-----------|-------------|
-| `/` | `/src/app/page.tsx` | Home page with Hero + About |
-| `/contact` | `/src/app/contact/page.tsx` | Contact form and info |
-| `/projects` | `/src/app/projects/page.tsx` | Projects showcase |
+| Route       | Component                    | Description                 |
+| ----------- | ---------------------------- | --------------------------- |
+| `/`         | `/src/app/page.tsx`          | Home page with Hero + About |
+| `/contact`  | `/src/app/contact/page.tsx`  | Contact form and info       |
+| `/projects` | `/src/app/projects/page.tsx` | Projects showcase           |
 
 ### Anchor Navigation
 
 Smooth scrolling to sections (from Navbar):
+
 - `/#about` - About section
 - `/#skills` - Skills section
 
@@ -675,6 +733,7 @@ npm run lint     # Run ESLint
 ### TypeScript Configuration
 
 **Path Aliases:**
+
 ```json
 {
   "@/*": ["./src/*"],
@@ -684,9 +743,10 @@ npm run lint     # Run ESLint
 ```
 
 **Usage:**
+
 ```tsx
-import Hero from '@/components/Hero';
-import About from '@/components/About';
+import Hero from "@/components/Hero";
+import About from "@/components/About";
 ```
 
 ### Environment Variables
@@ -771,6 +831,7 @@ grep -r "border-blue-" src/
 ### Framer Motion Patterns
 
 **Fade In:**
+
 ```tsx
 <motion.div
   initial={{ opacity: 0 }}
@@ -780,6 +841,7 @@ grep -r "border-blue-" src/
 ```
 
 **Slide Up:**
+
 ```tsx
 <motion.div
   initial={{ opacity: 0, y: 50 }}
@@ -789,6 +851,7 @@ grep -r "border-blue-" src/
 ```
 
 **Scroll-Triggered:**
+
 ```tsx
 <motion.div
   initial={{ opacity: 0, y: 30 }}
@@ -799,6 +862,7 @@ grep -r "border-blue-" src/
 ```
 
 **Staggered Children:**
+
 ```tsx
 // Parent
 transition={{ duration: 0.5, delay: 0.2 }}
@@ -813,8 +877,9 @@ transition={{ duration: 0.5, delay: 0.6 }}
 ### Vanta.js 3D Effects
 
 **NET Effect Configuration:**
+
 ```tsx
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 const VantaComponent = () => {
   const vantaRef = useRef<HTMLDivElement>(null);
@@ -824,22 +889,22 @@ const VantaComponent = () => {
     if (!vantaRef.current || vantaEffect) return;
 
     // Load Three.js
-    const script1 = document.createElement('script');
-    script1.src = '/assets/js/three.min.js';
+    const script1 = document.createElement("script");
+    script1.src = "/assets/js/three.min.js";
     script1.async = true;
 
     script1.onload = () => {
       // Load Vanta.js
-      const script2 = document.createElement('script');
-      script2.src = '/assets/js/vanta.net.min.js';
+      const script2 = document.createElement("script");
+      script2.src = "/assets/js/vanta.net.min.js";
       script2.async = true;
 
       script2.onload = () => {
         const effect = (window as any).VANTA.NET({
           el: vantaRef.current,
           THREE: (window as any).THREE,
-          color: 0x67f8f7,              // Cyan
-          backgroundColor: 0x05121c,     // Dark blue
+          color: 0x67f8f7, // Cyan
+          backgroundColor: 0x05121c, // Dark blue
           maxDistance: 18.0,
           spacing: 20.0,
           showDots: true,
@@ -890,6 +955,7 @@ keyframes: {
 ```
 
 Usage:
+
 ```tsx
 <div className="animate-fade-in">Fades in</div>
 <div className="animate-slide-up">Slides up</div>
@@ -903,6 +969,7 @@ Usage:
 ### Recommended Platform: Vercel
 
 **Benefits:**
+
 - Native Next.js support
 - Automatic deployments from Git
 - Edge network for global performance
@@ -911,6 +978,7 @@ Usage:
 **Deployment Steps:**
 
 1. **Connect Repository:**
+
 ```bash
 # Install Vercel CLI
 npm i -g vercel
@@ -920,17 +988,19 @@ vercel
 ```
 
 2. **Configure Build Settings:**
+
 - Framework: Next.js
 - Build Command: `npm run build`
 - Output Directory: `.next`
 - Install Command: `npm install`
 
 3. **Environment Variables:**
-Add any future env vars in Vercel dashboard
+   Add any future env vars in Vercel dashboard
 
 ### Alternative Platforms
 
 **Netlify:**
+
 ```bash
 # netlify.toml
 [build]
@@ -939,6 +1009,7 @@ Add any future env vars in Vercel dashboard
 ```
 
 **Self-Hosted (Docker):**
+
 ```dockerfile
 FROM node:20-alpine
 WORKDIR /app
@@ -964,6 +1035,7 @@ CMD ["npm", "start"]
 ### Git Workflow
 
 **Current Status:**
+
 ```bash
 # Modified files (pending commit)
 - src/app/contact/page.tsx
@@ -978,6 +1050,7 @@ CMD ["npm", "start"]
 ```
 
 **Recent Commits:**
+
 - sky color changed
 - font color adjusted
 - clouds lag fixed
@@ -987,24 +1060,28 @@ CMD ["npm", "start"]
 ### Code Quality Standards
 
 **TypeScript:**
+
 - Strict mode enabled
 - All components must be typed
 - Use interfaces for complex objects
 - Avoid `any` type
 
 **Component Standards:**
+
 - Use "use client" only when necessary
 - Server components by default
 - Props should be typed interfaces
 - Cleanup effects in useEffect
 
 **Styling Standards:**
+
 - Tailwind utility classes preferred
 - Custom CSS only for complex effects
 - Follow color scheme strictly
 - Responsive design required (mobile-first)
 
 **Naming Conventions:**
+
 - Components: PascalCase (Hero.tsx, About.tsx)
 - Files: kebab-case for pages (page.tsx, layout.tsx)
 - Variables: camelCase
@@ -1017,23 +1094,27 @@ CMD ["npm", "start"]
 ### Planned Features
 
 1. **Backend Integration**
+
    - Add API route for contact form (`/src/app/api/contact/route.ts`)
    - Email service integration (SendGrid, Resend, Nodemailer)
    - Form validation with Zod or Yup
 
 2. **Content Additions**
+
    - Blog section with MDX support
    - Testimonials carousel
    - Resume download button
    - Project case study pages
 
 3. **Features**
+
    - Dark/light mode toggle (optional, currently dark-only)
    - Search functionality
    - Filter projects by technology
    - Analytics integration (Vercel Analytics, Google Analytics)
 
 4. **Performance**
+
    - Image optimization with next/image
    - Lazy loading for projects
    - Code splitting improvements
@@ -1063,9 +1144,9 @@ CMD ["npm", "start"]
 **Location:** Chennai, Tamil Nadu, India
 
 **Social Links:**
-- GitHub: [github.com/lokesh603]
-- LinkedIn: [linkedin.com/in/lokesh-t]
-- Twitter: [twitter.com/lokesh_t]
+
+- GitHub: [[github.com/lokisanhitleson](https://github.com/lokisanhitleson)]
+- LinkedIn: [[linkedin.com/in/lokeshtofficial](https://www.linkedin.com/in/lokeshtofficial/)]
 
 ---
 
@@ -1125,4 +1206,4 @@ shadow-[0_0_30px_rgba(103,248,247,0.3)]  /* Cyan glow */
 
 ---
 
-*This documentation was generated to help AI assistants (like Claude) understand and work with this portfolio project effectively. Keep it updated as the project evolves.*
+_This documentation was generated to help AI assistants (like Claude) understand and work with this portfolio project effectively. Keep it updated as the project evolves._

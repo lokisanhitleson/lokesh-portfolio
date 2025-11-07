@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaPhone, FaEnvelope } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -59,14 +59,14 @@ export default function Footer() {
               </span>
             </h4>
             <div className="flex space-x-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#67f8f7] transition-all text-xl">
+              <a href="https://github.com/lokisanhitleson" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#67f8f7] transition-all text-xl">
                 <FaGithub />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#67f8f7] transition-all text-xl">
+              <a href="https://www.linkedin.com/in/lokeshtofficial" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#67f8f7] transition-all text-xl">
                 <FaLinkedin />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#67f8f7] transition-all text-xl">
-                <FaTwitter />
+              <a href="tel:+917708325296" className="text-gray-300 hover:text-[#67f8f7] transition-all text-xl">
+                <FaPhone />
               </a>
               <a href="mailto:lokesh603@gmail.com" className="text-gray-300 hover:text-[#67f8f7] transition-all text-xl">
                 <FaEnvelope />
@@ -80,8 +80,8 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-300">
             <p>&copy; {currentYear} Lokesh T. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-[#67f8f7] transition-all">Privacy Policy</a>
-              <a href="#" className="hover:text-[#67f8f7] transition-all">Terms of Service</a>
+              <a href="/privacy" className="hover:text-[#67f8f7] transition-all">Privacy Policy</a>
+              <a href="/terms" className="hover:text-[#67f8f7] transition-all">Terms of Service</a>
             </div>
           </div>
         </div>

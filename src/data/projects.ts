@@ -136,7 +136,7 @@ export const projects: Project[] = [
       ],
     },
     problem:
-      "Healthcare facilities struggled with appointment management, patient records organization, and patient engagement through modern communication channels. Staff spent excessive time on routine inquiries, leading to reduced focus on critical patient care. There was no unified system to handle appointments, records, and patient communication in a white-labelling model",
+      "Healthcare facilities struggled with appointment management, patient records organization, and patient engagement through modern communication channels. Staff spent excessive time on routine inquiries, leading to reduced focus on critical patient care. There was no unified system to handle appointments, records, and patient communication in a white-labelling model.",
     solution:
       "Developed an AI enhanced healthcare platform with intelligent chatbots powered by OpenAI that handle medical suggestions to doctors and patient inquiries. Implemented centralized health records management with role-based access control, seamless appointment scheduling with automated reminders, and real-time analytics dashboard for healthcare administrators.",
     keyFeatures: [
@@ -165,20 +165,28 @@ export const projects: Project[] = [
     ],
     screenshots: [
       {
-        url: "/projects/mazoapps/screenshot-1.jpg",
-        caption: "AI Chatbot Interface",
+        url: "/assets/images/projects/mazoapps/super admin dashboard.png",
+        caption: "Super Admin Dashboard Overview",
       },
       {
-        url: "/projects/mazoapps/screenshot-2.jpg",
-        caption: "Appointment Dashboard",
+        url: "/assets/images/projects/mazoapps/Doctor dashboard.png",
+        caption: "Doctor Dashboard with Patient Insights",
       },
       {
-        url: "/projects/mazoapps/screenshot-3.jpg",
-        caption: "Patient Records View",
+        url: "/assets/images/projects/mazoapps/Admin calendar.png",
+        caption: "Admin Calendar & Appointment Management",
       },
       {
-        url: "/projects/mazoapps/screenshot-4.jpg",
-        caption: "Analytics Dashboard",
+        url: "/assets/images/projects/mazoapps/patient records graph.png",
+        caption: "Patient Records & Analytics Graph",
+      },
+      {
+        url: "/assets/images/projects/mazoapps/message center.png",
+        caption: "Message Center for Patient Communication",
+      },
+      {
+        url: "/assets/images/projects/mazoapps/patient booking.png",
+        caption: "Patient Online Booking System",
       },
     ],
     logo: "/assets/images/projects/mazoapps/mazoapps-logo square.png",
@@ -418,21 +426,7 @@ export const projects: Project[] = [
       { label: "Time Reduction", value: "20%" },
       { label: "Tracking Accuracy", value: "99.5%" },
     ],
-    screenshots: [
-      {
-        url: "/projects/milereach/screenshot-1.jpg",
-        caption: "Live Tracking Dashboard",
-      },
-      {
-        url: "/projects/milereach/screenshot-2.jpg",
-        caption: "Route Optimization",
-      },
-      { url: "/projects/milereach/screenshot-3.jpg", caption: "Driver App" },
-      {
-        url: "/projects/milereach/screenshot-4.jpg",
-        caption: "Analytics Overview",
-      },
-    ],
+    screenshots: [],
     logo: "/assets/images/projects/milereach/milereach_logo square.jpeg",
     banner: "/assets/images/projects/milereach/milereach logo rect.png",
     bannerBackground: "dark",
@@ -491,24 +485,7 @@ export const projects: Project[] = [
       { label: "Productivity Gain", value: "40%" },
       { label: "Cost Reduction", value: "60%" },
     ],
-    screenshots: [
-      {
-        url: "/projects/aster-dialer/screenshot-1.jpg",
-        caption: "Agent Dashboard",
-      },
-      {
-        url: "/projects/aster-dialer/screenshot-2.jpg",
-        caption: "Campaign Management",
-      },
-      {
-        url: "/projects/aster-dialer/screenshot-3.jpg",
-        caption: "Real-time Monitoring",
-      },
-      {
-        url: "/projects/aster-dialer/screenshot-4.jpg",
-        caption: "Analytics & Reports",
-      },
-    ],
+    screenshots: [],
     logo: "/assets/images/projects/aster-dialer/aster dialer square.png",
     banner: "/assets/images/projects/aster-dialer/aster dialer rect.jpeg",
     bannerBackground: "light",

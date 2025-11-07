@@ -197,6 +197,17 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 2,
+    name: "Mr. Vinoth Kumar",
+    position: "Senior Specialist - Automation & BI",
+    organization: "LTIMindtree",
+    testimonial:
+      "When we try new ideas, Lokesh does small R&D, shows a simple demo and explains what is possible in easy words. He speaks calmly, not so fast, so everyone understands. This helped our whole team get on the same page quickly. He think through performance, scenarios from best to worst, and catches loopholes and edge cases before starting to code.",
+    relationship: "System Architect (Advisor)",
+    photo: "/testimonials/vinoth-kumar.jpg",
+    linkedinUrl: "https://www.linkedin.com/in/vinoth-kumar-veeran-027308114/",
+  },
+  {
+    id: 3,
     name: "Dr. Raj Rajendran",
     position: "Founder and CEO",
     organization: "Rungila Neuro Adaptive Learning Pvt Ltd",
@@ -207,7 +218,7 @@ export const testimonials: Testimonial[] = [
     linkedinUrl: "https://www.linkedin.com/in/rajendr",
   },
   {
-    id: 3,
+    id: 4,
     name: "Mr. Barath Kumar",
     position: "Automation Architect",
     organization: "Leidos",
@@ -219,27 +230,15 @@ export const testimonials: Testimonial[] = [
       "https://www.linkedin.com/in/barath-kumar-raghunathan-847820a3",
   },
   {
-    id: 4,
+    id: 5,
     name: "Mr. Narayanan Srinivasan",
     position: "Chief Technology Officer",
     organization: "Tevatel",
     testimonial:
-      "Lokesh is one of the most dependable developers I worked with at Tevatel. He understood client needs really well and always made my job easier by quickly analyzing and fixing issues, even during late-night production incidents. I could always rely on him to handle urgent situations calmly.",
+      "Lokesh is a dependable developer I worked with at Tevatel. He understood client needs really well and always made my job easier by quickly analyzing and fixing issues, even during late-night production incidents. I could always rely on him to handle urgent situations calmly.",
     relationship: "Former Director",
     photo: "/testimonials/narayanan-srinivasan-36b30211b.jpg",
     linkedinUrl: "https://www.linkedin.com/in/narayanan-srinivasan-36b30211b",
-  },
-  {
-    id: 5,
-    name: "Ms. Subhiksha Parthasarathi",
-    position: "Associate Product Manager",
-    organization: "Mazoapps",
-    testimonial:
-      "I remember Lokesh testing a new concept over a week, then walking us through the results like a story of what worked, what didn’t and why. It helped us decide confidently, and the handoff to the rest of the teams was seamless. Also a friendly human being.",
-    relationship: "Colleague",
-    photo: "/testimonials/subhiksha-parthasarathi-9b60311a5.jpg",
-    linkedinUrl:
-      "https://www.linkedin.com/in/subhiksha-parthasarathi-9b60311a5",
   },
   {
     id: 6,
@@ -247,7 +246,7 @@ export const testimonials: Testimonial[] = [
     position: "Senior Software Developer",
     organization: "Unitch Pvt Ltd",
     testimonial:
-      "I remember Lokesh testing a new concept over a week, then walking us through the results like a story of what worked, what didn't and why. It helped us decide confidently, and the handoff to the rest of the teams was seamless. Also a friendly human being.",
+      "I worked closely with Lokesh for years. He explains ideas slowly and clearly, always explores new tech and delivers solid features. His code is clean and easy to maintain. He’s steady and dependable. He helps the team move faster with clear communication. What I like most is his calm way of working. No rush, no drama just practical decisions and reliable delivery.",
     relationship: "Colleague",
     photo: "/testimonials/sathish-kumar-7173a6113.jpg",
     linkedinUrl: "https://www.linkedin.com/in/sathish-kumar-7173a6113",

@@ -66,7 +66,7 @@ export default function Hero() {
   const stats = [
     { number: "30+", label: "Skills" },
     { number: "20+", label: "Projects" },
-    { number: "50+", label: "Mentored" },
+    { number: "40+", label: "Mentored" },
     { number: "5", label: "Tech Domains" },
   ];
 
@@ -149,7 +149,7 @@ export default function Hero() {
               className="flex gap-4 pt-4"
             >
               <a
-                href="https://github.com"
+                href="https://github.com/lokisanhitleson"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-lg bg-secondary hover:bg-accent hover:text-white transition-all text-primary text-xl"
@@ -157,7 +157,7 @@ export default function Hero() {
                 <FaGithub />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/lokeshtofficial"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-lg bg-secondary hover:bg-accent hover:text-white transition-all text-primary text-xl"

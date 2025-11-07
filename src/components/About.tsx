@@ -14,7 +14,7 @@ export default function About() {
   const highlights = [
     { number: "11+", label: "Years of Experience" },
     { number: "20+", label: "Projects Delivered" },
-    { number: "50+", label: "Team Members Mentored" },
+    { number: "40+", label: "Team Members Mentored" },
     { number: "5", label: "Different Tech Domains" },
   ];
 

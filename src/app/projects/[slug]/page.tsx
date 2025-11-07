@@ -218,7 +218,7 @@ export default function ProjectDetailPage() {
             </span>
           </h2>
           <div className="bg-[#1a3e4a] border border-[#67f8f7]/20 rounded-lg p-8">
-            <p className="text-gray-300 text-lg leading-relaxed">{project.problem}</p>.
+            <p className="text-gray-300 text-lg leading-relaxed">{project.problem}</p>
           </div>
         </div>
       </motion.section>
