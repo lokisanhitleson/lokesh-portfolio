@@ -34,7 +34,7 @@ export default function ContactPage() {
         body: formData
       });
 
-      const data = await response.json();
+      await response.json();
       setSubmitted(true);
     } catch (error) {
       console.error("Error submitting form:", error);
