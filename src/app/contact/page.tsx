@@ -14,6 +14,7 @@ export default function ContactPage() {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -22,23 +23,45 @@ export default function ContactPage() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+    setError("");
 
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitted(true);
-      setFormData({ name: "", email: "", subject: "", message: "" });
+    try {
+      setLoading(true);
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setError(data.message || "Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setError("An unexpected error occurred. Please try again later.");
+    } finally {
       setLoading(false);
-
-      // Reset after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1500);
+    }
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div className="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-primary">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -47,8 +70,12 @@ export default function ContactPage() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-primary mb-4">Get In Touch</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-purple-400 to-[#67f8f7] bg-clip-text text-transparent">
+              Get In Touch
+            </span>
+          </h1>
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
             Have a project in mind? Let&apos;s work together to bring your ideas to life. I&apos;m always interested in hearing about new opportunities.
           </p>
         </motion.div>
@@ -62,8 +89,8 @@ export default function ContactPage() {
             className="space-y-8"
           >
             <div>
-              <h2 className="text-3xl font-bold text-primary mb-6">Contact Information</h2>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <h2 className="text-3xl font-bold text-[#67f8f7] mb-6">Contact Information</h2>
+              <p className="text-gray-300 mb-8 leading-relaxed">
                 Whether you have a question about my services, want to discuss a project, or simply want to say hello, feel free to reach out. I&apos;ll get back to you as soon as possible.
               </p>
             </div>
@@ -77,13 +104,13 @@ export default function ContactPage() {
                 className="flex gap-4"
               >
                 <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-accent/10">
-                    <span className="text-accent text-xl">📧</span>
+                  <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-[#67f8f7]/10">
+                    <span className="text-[#67f8f7] text-xl">📧</span>
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-primary">Email</h3>
-                  <a href="mailto:lokesh603@gmail.com" className="text-gray-600 hover:text-accent transition-all">
+                  <h3 className="text-lg font-semibold text-[#67f8f7]">Email</h3>
+                  <a href="mailto:lokesh603@gmail.com" className="text-gray-300 hover:text-[#67f8f7] transition-all">
                     lokesh603@gmail.com
                   </a>
                 </div>
@@ -96,13 +123,13 @@ export default function ContactPage() {
                 className="flex gap-4"
               >
                 <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-accent/10">
-                    <span className="text-accent text-xl">📱</span>
+                  <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-[#67f8f7]/10">
+                    <span className="text-[#67f8f7] text-xl">📱</span>
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-primary">Phone</h3>
-                  <a href="tel:+917708325296" className="text-gray-600 hover:text-accent transition-all">
+                  <h3 className="text-lg font-semibold text-[#67f8f7]">Phone</h3>
+                  <a href="tel:+917708325296" className="text-gray-300 hover:text-[#67f8f7] transition-all">
                     +91 7708325296
                   </a>
                 </div>
@@ -115,13 +142,13 @@ export default function ContactPage() {
                 className="flex gap-4"
               >
                 <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-accent/10">
-                    <span className="text-accent text-xl">📍</span>
+                  <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-[#67f8f7]/10">
+                    <span className="text-[#67f8f7] text-xl">📍</span>
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-primary">Location</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-lg font-semibold text-[#67f8f7]">Location</h3>
+                  <p className="text-gray-300">
                     Chennai, Tamil Nadu<br />India
                   </p>
                 </div>
@@ -134,13 +161,13 @@ export default function ContactPage() {
                 className="flex gap-4"
               >
                 <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-accent/10">
-                    <span className="text-accent text-xl">⏰</span>
+                  <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-[#67f8f7]/10">
+                    <span className="text-[#67f8f7] text-xl">⏰</span>
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-primary">Response Time</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-lg font-semibold text-[#67f8f7]">Response Time</h3>
+                  <p className="text-gray-300">
                     Typically respond within 24 hours
                   </p>
                 </div>
@@ -148,17 +175,14 @@ export default function ContactPage() {
             </div>
 
             {/* Social Links */}
-            <div className="pt-8 border-t">
-              <h3 className="text-lg font-semibold text-primary mb-4">Connect on Social</h3>
+            <div className="pt-8 border-t border-[#67f8f7]/20">
+              <h3 className="text-lg font-semibold text-[#67f8f7] mb-4">Connect on Social</h3>
               <div className="flex gap-4">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-gray-800 transition-all">
+                <a href="https://github.com/lokisanhitleson" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all">
                   GitHub
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all">
+                <a href="https://www.linkedin.com/in/lokeshtofficial" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all">
                   LinkedIn
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-blue-400 text-white hover:bg-blue-500 transition-all">
-                  Twitter
                 </a>
               </div>
             </div>
@@ -170,7 +194,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-white p-8 rounded-lg shadow-sm">
+            <div className="bg-[#1a3e4a] p-8 rounded-lg border border-[#67f8f7]/20">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -178,17 +202,33 @@ export default function ContactPage() {
                   className="flex flex-col items-center justify-center text-center py-12"
                 >
                   <div className="text-6xl mb-4">
-                    <FaCheckCircle className="text-accent" />
+                    <FaCheckCircle className="text-[#67f8f7]" />
                   </div>
-                  <h3 className="text-2xl font-bold text-primary mb-2">Message Sent!</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-2xl font-bold text-[#67f8f7] mb-2">Message Sent!</h3>
+                  <p className="text-gray-300 mb-6">
                     Thank you for reaching out. I&apos;ll get back to you soon!
                   </p>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="px-6 py-3 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-bold"
+                  >
+                    Send Another Message
+                  </button>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-4 bg-red-900/20 border border-red-500/50 rounded-lg"
+                    >
+                      <p className="text-red-400 text-sm">{error}</p>
+                    </motion.div>
+                  )}
+
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-[#67f8f7] mb-2">
                       Full Name
                     </label>
                     <input
@@ -197,13 +237,13 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                      className="w-full px-4 py-3 bg-[#05121c] border border-[#67f8f7]/30 text-white rounded-lg focus:outline-none focus:border-[#67f8f7] transition-colors"
                       placeholder="John Doe"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-[#67f8f7] mb-2">
                       Email Address
                     </label>
                     <input
@@ -212,13 +252,13 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                      className="w-full px-4 py-3 bg-[#05121c] border border-[#67f8f7]/30 text-white rounded-lg focus:outline-none focus:border-[#67f8f7] transition-colors"
                       placeholder="john@example.com"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-[#67f8f7] mb-2">
                       Subject
                     </label>
                     <input
@@ -227,13 +267,13 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                      className="w-full px-4 py-3 bg-[#05121c] border border-[#67f8f7]/30 text-white rounded-lg focus:outline-none focus:border-[#67f8f7] transition-colors"
                       placeholder="Project Inquiry"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-[#67f8f7] mb-2">
                       Message
                     </label>
                     <textarea
@@ -242,7 +282,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent resize-none"
+                      className="w-full px-4 py-3 bg-[#05121c] border border-[#67f8f7]/30 text-white rounded-lg focus:outline-none focus:border-[#67f8f7] transition-colors resize-none"
                       placeholder="Tell me about your project..."
                     ></textarea>
                   </div>
@@ -250,7 +290,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 transition-all font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-bold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? "Sending..." : "Send Message"}
                   </button>

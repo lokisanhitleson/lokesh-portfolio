@@ -22,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#1e3a8a" />
+        <meta name="theme-color" content="#05121c" />
       </head>
-      <body className="bg-light text-gray-900">
+      <body className="bg-dark text-white">
         <Navbar />
         <main className="min-h-screen">
           {children}
