@@ -14,6 +14,7 @@ export default function ContactPage() {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -24,20 +25,36 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
+
     try {
       setLoading(true);
-      const formData = new FormData(e.currentTarget);
-      formData.append("access_key", "ff56f803-9874-400a-9413-9a46c9111ba2");
 
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        body: formData
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
-      await response.json();
-      setSubmitted(true);
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setError(data.message || "Failed to send message. Please try again.");
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
+      setError("An unexpected error occurred. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -188,12 +205,28 @@ export default function ContactPage() {
                     <FaCheckCircle className="text-[#67f8f7]" />
                   </div>
                   <h3 className="text-2xl font-bold text-[#67f8f7] mb-2">Message Sent!</h3>
-                  <p className="text-gray-300">
+                  <p className="text-gray-300 mb-6">
                     Thank you for reaching out. I&apos;ll get back to you soon!
                   </p>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="px-6 py-3 bg-gradient-to-r from-purple-600 to-[#67f8f7] text-white rounded-lg hover:opacity-90 transition-all font-bold"
+                  >
+                    Send Another Message
+                  </button>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-4 bg-red-900/20 border border-red-500/50 rounded-lg"
+                    >
+                      <p className="text-red-400 text-sm">{error}</p>
+                    </motion.div>
+                  )}
+
                   <div>
                     <label className="block text-sm font-medium text-[#67f8f7] mb-2">
                       Full Name
