@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import { FaGithub, FaLinkedin, FaPhone, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaPhone, FaEnvelope, FaStackOverflow } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -64,6 +64,9 @@ export default function Footer() {
               </a>
               <a href="https://www.linkedin.com/in/lokeshtofficial" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#67f8f7] transition-all text-xl">
                 <FaLinkedin />
+              </a>
+              <a href="https://stackoverflow.com/users/3578712/lokesh-t" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#67f8f7] transition-all text-xl">
+                <FaStackOverflow />
               </a>
               <a href="tel:+917708325296" className="text-gray-300 hover:text-[#67f8f7] transition-all text-xl">
                 <FaPhone />

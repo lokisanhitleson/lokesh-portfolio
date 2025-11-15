@@ -13,10 +13,13 @@
 5. [Project Structure](#project-structure)
 6. [Components Guide](#components-guide)
 7. [Pages & Routing](#pages--routing)
-8. [Development Guide](#development-guide)
-9. [Color Usage Guidelines](#color-usage-guidelines)
-10. [Animations & Effects](#animations--effects)
-11. [Deployment](#deployment)
+8. [Data Management](#data-management)
+9. [API Routes](#api-routes)
+10. [Development Guide](#development-guide)
+11. [Color Usage Guidelines](#color-usage-guidelines)
+12. [Animations & Effects](#animations--effects)
+13. [Deployment](#deployment)
+14. [Future Enhancements](#future-enhancements)
 
 ---
 
@@ -34,8 +37,9 @@
 - **Smooth Animations:** Framer Motion throughout
 - **Responsive Design:** Mobile-first approach with Tailwind CSS
 - **Dark Theme:** Custom cyan and dark blue color palette
-- **Project Showcase:** 6 featured projects with modal details
-- **Contact Form:** Interactive form with validation
+- **Project Showcase:** 7 featured projects with dedicated detail pages
+- **Credentials Page:** Professional certifications and testimonials
+- **Contact Form:** Interactive form with Web3Forms API integration
 - **Professional Content:** Comprehensive skills, experience, and achievements
 
 ### Professional Highlights
@@ -334,7 +338,11 @@ lokesh-portfolio/
 ├── public/
 │   ├── assets/
 │   │   ├── images/
-│   │   │   └── 1751890150324.jpg       # Profile photo
+│   │   │   ├── 1751890150324.jpg       # Profile photo
+│   │   │   ├── projects/               # Project screenshots & logos
+│   │   │   ├── certificates/           # Certificate PDF files
+│   │   │   └── certificate-logo/       # Certificate issuer logos
+│   │   ├── videos/                     # Project demo videos
 │   │   └── js/
 │   │       ├── three.min.js            # 3D rendering library
 │   │       ├── vanta.clouds.min.js     # Clouds effect (unused)
@@ -342,20 +350,36 @@ lokesh-portfolio/
 │   └── *.svg                           # SVG icons
 ├── src/
 │   ├── app/
+│   │   ├── api/
+│   │   │   └── contact/
+│   │   │       └── route.ts            # Contact form API (Web3Forms)
 │   │   ├── contact/
 │   │   │   └── page.tsx                # Contact page
+│   │   ├── credentials/
+│   │   │   └── page.tsx                # Credentials & testimonials page
 │   │   ├── projects/
-│   │   │   └── page.tsx                # Projects showcase
+│   │   │   ├── [slug]/
+│   │   │   │   └── page.tsx            # Individual project detail page
+│   │   │   └── page.tsx                # Projects listing page
+│   │   ├── privacy/
+│   │   │   └── page.tsx                # Privacy policy page
+│   │   ├── terms/
+│   │   │   └── page.tsx                # Terms of service page
 │   │   ├── globals.css                 # Global styles + color palette
 │   │   ├── layout.tsx                  # Root layout with Navbar/Footer
 │   │   ├── page.tsx                    # Home page
 │   │   └── favicon.ico
-│   └── components/
-│       ├── About.tsx                   # About section component
-│       ├── Footer.tsx                  # Footer component
-│       ├── Hero.tsx                    # Hero with 3D background
-│       └── Navbar.tsx                  # Navigation component
+│   ├── components/
+│   │   ├── About.tsx                   # About section component
+│   │   ├── CertificateModal.tsx        # Certificate viewer modal
+│   │   ├── Footer.tsx                  # Footer component
+│   │   ├── Hero.tsx                    # Hero with 3D background
+│   │   └── Navbar.tsx                  # Navigation component
+│   └── data/
+│       ├── projects.ts                 # Project data (7 projects)
+│       └── credentials.ts              # Certificates & testimonials data
 ├── .gitignore
+├── CLAUDE.md                           # This documentation file
 ├── eslint.config.mjs
 ├── next.config.ts
 ├── package.json
@@ -368,8 +392,10 @@ lokesh-portfolio/
 ### Key Directories
 
 - **`/src/app`** - Next.js App Router pages and layouts
+- **`/src/app/api`** - API routes (contact form endpoint)
 - **`/src/components`** - Reusable React components
-- **`/public/assets`** - Static assets (images, scripts, fonts)
+- **`/src/data`** - Data files (projects, credentials, testimonials)
+- **`/public/assets`** - Static assets (images, scripts, videos, certificates)
 - **Configuration files** - Root-level config for Next.js, TypeScript, Tailwind, etc.
 
 ---
@@ -387,7 +413,7 @@ lokesh-portfolio/
 
 - Fixed position with backdrop blur
 - Logo with initials "LT"
-- Desktop navigation: Home, About, Skills, Projects, Contact
+- Desktop navigation: Home, About, Skills, Projects, **Credentials**, Contact
 - Mobile hamburger menu with slide-out panel
 - "Get In Touch" CTA button
 - Smooth scroll to sections
@@ -549,21 +575,21 @@ hover:bg-[#67f8f7] hover:text-[#05121c]
 #### Contact Page (`/src/app/contact/page.tsx`)
 
 **Type:** Client Component
-**Purpose:** Contact form and information display
+**Purpose:** Contact form with working API integration
 
 **Features:**
 
 - Controlled form with React state
 - Form fields: Name, Email, Subject, Message
 - Submit button with loading state
-- Success message with animation
+- Success/error message handling
+- **API Integration:** Posts to `/api/contact` (Web3Forms service)
 - Contact details card:
   - Email: lokesh603@gmail.com
   - Phone: +91 7708325296
   - Location: Chennai, Tamil Nadu, India
   - Response time: Within 24 hours
-- Social media links
-- Form submission simulation (no backend yet)
+- Social media links (GitHub, LinkedIn)
 
 **State Management:**
 
@@ -576,65 +602,97 @@ const [formData, setFormData] = useState({
 });
 const [submitted, setSubmitted] = useState(false);
 const [loading, setLoading] = useState(false);
+const [error, setError] = useState("");
+```
+
+**API Submission:**
+
+```tsx
+const response = await fetch("/api/contact", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(formData),
+});
 ```
 
 **Color Usage:**
 
 ```tsx
 // Page background
-className="min-h-screen bg-[#05121c] text-white"
+className="min-h-screen bg-primary"
 
 // Form inputs
-className="bg-[#1a3e4a] border-[#67f8f7]/30 text-white"
+className="bg-[#05121c] border-[#67f8f7]/30 text-white"
 focus:border-[#67f8f7]
 
 // Submit button
-className="bg-[#67f8f7] text-[#05121c] hover:bg-[#67f8f7]/90"
+className="bg-gradient-to-r from-purple-600 to-[#67f8f7]"
 
 // Contact info cards
-className="bg-[#1a3e4a] border-[#67f8f7]"
+className="bg-[#67f8f7]/10"
 ```
 
-#### Projects Page (`/src/app/projects/page.tsx`)
+---
+
+#### Credentials Page (`/src/app/credentials/page.tsx`)
 
 **Type:** Client Component
-**Purpose:** Project showcase with detailed case studies
+**Purpose:** Display professional certifications and testimonials
 
 **Features:**
 
-- Grid layout (3 columns desktop, 1-2 mobile)
-- 6 featured projects:
-  1. **CareNEO** - Healthcare SaaS Platform
-  2. **Mazoapps Health** - AI-Powered Healthcare Platform
-  3. **Telefy** - DeFi Trading Platform
-  4. **Bocxy** - Salon & Spa Management SaaS
-  5. **Rungila** - Career Guidance Platform
-  6. **MileReach** - Logistics Management Platform
-- Modal-based detailed view with:
-  - Role description
-  - Problem statement
-  - Solution explanation
-  - Results & impact metrics
-  - Complete technology stack
-  - GitHub/Demo links
-- Technology tags (limited to 3 on cards, full in modal)
-- Hover animations on cards
+- **Certifications Section:**
+  - Grid layout (3 columns desktop)
+  - 8 certificates (6 AWS, 2 HackerRank)
+  - Certificate issuer logos
+  - Certificate badge icon with cyan glow
+  - Skills preview (first 3 skills + count)
+  - Click to open modal with full details
+- **Testimonials Section:**
+  - Grid layout (2 columns)
+  - 6 testimonials from clients, advisors, colleagues
+  - Avatar initials
+  - LinkedIn profile links
+  - Relationship badges
+  - Quote styling
+- **Certificate Modal:**
+  - Full certificate details
+  - Skills list
+  - PDF viewer (opens certificate PDF)
+  - Close functionality
 
-**Data Structure:**
+**Data Sources:**
 
 ```tsx
-interface Project {
+import { certificates, testimonials } from "@/data/credentials";
+```
+
+**Certificate Interface:**
+
+```tsx
+interface Certificate {
   id: number;
   title: string;
+  issuer: "AWS" | "HackerRank" | "Google" | "Microsoft" | "MongoDB";
+  logo: string;
   description: string;
-  technologies: string[];
-  image: string;
-  link: string;
-  github?: string;
-  role?: string;
-  problem?: string;
-  solution?: string;
-  results?: string[];
+  pdfUrl: string;
+  date: string;
+  skills: string[];
+}
+```
+
+**Testimonial Interface:**
+
+```tsx
+interface Testimonial {
+  id: number;
+  name: string;
+  position: string;
+  organization: string;
+  testimonial: string;
+  relationship: string;
+  linkedinUrl?: string;
 }
 ```
 
@@ -642,17 +700,132 @@ interface Project {
 
 ```tsx
 // Page background
-className="min-h-screen bg-[#05121c] text-white"
+className="bg-primary"
+
+// Certificate cards
+className="bg-[#1a3e4a] border-[#67f8f7]/20"
+hover:shadow-[0_0_30px_rgba(201,130,255,0.4)]
+
+// Badge icon with glow
+className="drop-shadow-[0_0_8px_rgba(103,248,247,0.6)]"
+
+// Testimonial cards
+className="bg-[#1a3e4a] border-[#67f8f7]/20"
+```
+
+#### Projects Page (`/src/app/projects/page.tsx`)
+
+**Type:** Client Component
+**Purpose:** Project showcase listing with navigation to detail pages
+
+**Features:**
+
+- Grid layout (3 columns desktop, 2 tablet, 1 mobile)
+- 7 featured projects:
+  1. **Sevily** - Family/Friends Health Monitoring Platform
+  2. **Mazoapps Health** - AI-Powered Healthcare Platform
+  3. **Telefy** - DeFi Trading Platform with Credit Scoring
+  4. **Bocxy** - Salon & Spa Management SaaS
+  5. **Rungila** - Career Guidance Platform
+  6. **MileReach** - Logistics Management Platform
+  7. **Aster Dialer** - VoIP Call Center Solution
+- Click to navigate to dedicated detail page (`/projects/[slug]`)
+- Technology tags (limited to 3 on cards, with "+X more" indicator)
+- Hover animations with cyan/purple glow
+- Project data imported from `/src/data/projects.ts`
+
+**Data Structure:**
+
+```tsx
+interface Project {
+  id: number;
+  slug: string;
+  title: string;
+  tagline: string;
+  shortDescription: string;
+  description: string;
+  role: string;
+  duration: string;
+  teamSize: string;
+  technologies: {
+    frontend: string[];
+    backend: string[];
+    database: string[];
+    devops: string[];
+    other: string[];
+  };
+  problem: string;
+  solution: string;
+  keyFeatures: string[];
+  results: string[];
+  metrics: { label: string; value: string }[];
+  screenshots: { url: string; caption: string }[];
+  videoUrl?: string;
+  github?: string;
+  demo?: string;
+  logo: string;
+  banner: string;
+  bannerBackground: "light" | "dark";
+}
+```
+
+**Color Usage:**
+
+```tsx
+// Page background
+className="min-h-screen bg-primary"
 
 // Project cards
-className="bg-[#1a3e4a] border-[#67f8f7]"
-hover:shadow-[0_0_30px_rgba(103,248,247,0.3)]
+className="bg-[#1a3e4a] border-[#67f8f7]/20"
+hover:shadow-[0_0_30px_rgba(201,130,255,0.4)]
 
 // Technology tags
-className="bg-[#05121c] text-[#67f8f7] border-[#67f8f7]/30"
+className="bg-gradient-to-r from-purple-600/20 to-[#67f8f7]/20 border-purple-400/40"
+```
 
-// Modal
-className="bg-[#1a3e4a] border-[#67f8f7]"
+---
+
+#### Project Detail Page (`/src/app/projects/[slug]/page.tsx`)
+
+**Type:** Client Component (Dynamic Route)
+**Purpose:** Comprehensive project case study with full details
+
+**Features:**
+
+- **Hero Section:** Large logo, title, tagline, CTA buttons
+- **Info Cards:** Role, Duration, Team Size
+- **Video Demo:** YouTube embed or local video player
+- **About Section:** Full project description
+- **Challenge Section:** Problem statement
+- **Solution Section:** Technical solution + key features
+- **Screenshots Gallery:** Clickable images with lightbox
+- **Tech Stack:** Categorized by Frontend, Backend, Database, DevOps, Other
+- **Results & Impact:** Achievement metrics
+- **CTA Section:** Contact and navigation buttons
+
+**Sections:**
+
+1. **Hero** - Project branding and metadata
+2. **Video Demo** - If available (YouTube or local)
+3. **Overview** - Detailed description
+4. **The Challenge** - Problem statement
+5. **The Solution** - Implementation details + key features
+6. **Screenshots** - Image gallery with captions
+7. **Technology Stack** - Complete tech breakdown
+8. **Results & Impact** - Measurable outcomes
+9. **CTA** - Contact and navigation
+
+**Color Usage:**
+
+```tsx
+// Background gradients
+className="bg-gradient-to-br from-purple-900/20 via-[#05121c] to-[#1a3e4a]/30"
+
+// Cards and sections
+className="bg-[#1a3e4a] border-[#67f8f7]/20"
+
+// Tech tags with hover glow
+hover:shadow-[0_0_15px_rgba(201,130,255,0.4)]
 ```
 
 #### Root Layout (`/src/app/layout.tsx`)
@@ -690,11 +863,16 @@ export const metadata: Metadata = {
 
 ### Route Structure
 
-| Route       | Component                    | Description                 |
-| ----------- | ---------------------------- | --------------------------- |
-| `/`         | `/src/app/page.tsx`          | Home page with Hero + About |
-| `/contact`  | `/src/app/contact/page.tsx`  | Contact form and info       |
-| `/projects` | `/src/app/projects/page.tsx` | Projects showcase           |
+| Route                | Component                              | Description                          |
+| -------------------- | -------------------------------------- | ------------------------------------ |
+| `/`                  | `/src/app/page.tsx`                    | Home page with Hero + About          |
+| `/contact`           | `/src/app/contact/page.tsx`            | Contact form with API integration    |
+| `/projects`          | `/src/app/projects/page.tsx`           | Projects listing (7 projects)        |
+| `/projects/[slug]`   | `/src/app/projects/[slug]/page.tsx`    | Individual project detail page       |
+| `/credentials`       | `/src/app/credentials/page.tsx`        | Certifications & testimonials        |
+| `/privacy`           | `/src/app/privacy/page.tsx`            | Privacy policy                       |
+| `/terms`             | `/src/app/terms/page.tsx`              | Terms of service                     |
+| `/api/contact`       | `/src/app/api/contact/route.ts`        | Contact form API (POST)              |
 
 ### Anchor Navigation
 
@@ -702,6 +880,211 @@ Smooth scrolling to sections (from Navbar):
 
 - `/#about` - About section
 - `/#skills` - Skills section
+
+### Dynamic Routes
+
+**Project Detail Pages:**
+- `/projects/sevily` - Sevily project
+- `/projects/mazoapps-health` - Mazoapps Health project
+- `/projects/telefy` - Telefy project
+- `/projects/bocxy` - Bocxy project
+- `/projects/rungila` - Rungila project
+- `/projects/milereach` - MileReach project
+- `/projects/aster-dialer` - Aster Dialer project
+
+---
+
+## Data Management
+
+### Data Files Structure
+
+All content data is centralized in TypeScript files with proper interfaces for type safety.
+
+#### Projects Data (`/src/data/projects.ts`)
+
+**Purpose:** Centralized storage for all project information
+
+**Contains:**
+- 7 complete project case studies
+- Full project metadata (title, tagline, description)
+- Technology stacks (frontend, backend, database, devops, other)
+- Problem statements and solutions
+- Key features lists
+- Results and impact metrics
+- Screenshots with captions
+- Video URLs (YouTube or local)
+- Demo and GitHub links
+- Project logos and banners
+
+**Usage:**
+```tsx
+import { projects } from "@/data/projects";
+
+// Get all projects
+const allProjects = projects;
+
+// Find project by slug
+const project = projects.find(p => p.slug === "sevily");
+```
+
+**Projects List:**
+1. Sevily - Healthcare monitoring platform
+2. Mazoapps Health - AI-powered healthcare SaaS
+3. Telefy - DeFi platform with credit scoring
+4. Bocxy - Salon & spa management
+5. Rungila - Career guidance platform
+6. MileReach - Logistics management
+7. Aster Dialer - VoIP call center solution
+
+#### Credentials Data (`/src/data/credentials.ts`)
+
+**Purpose:** Centralized storage for certifications and testimonials
+
+**Contains:**
+- **Certificates Array:**
+  - 8 professional certifications
+  - 6 AWS certifications (Solutions Architect, DevOps, Databases, etc.)
+  - 2 HackerRank certifications (Node.js, Problem Solving)
+  - Certificate metadata (issuer, date, description)
+  - Skills covered
+  - PDF file paths
+  - Issuer logos
+
+- **Testimonials Array:**
+  - 6 professional testimonials
+  - Client testimonials
+  - Advisor recommendations
+  - Colleague endorsements
+  - LinkedIn profile links
+  - Relationship context (Client, Advisor, Colleague, Former Director)
+
+**Usage:**
+```tsx
+import { certificates, testimonials } from "@/data/credentials";
+
+// Display all certificates
+certificates.map(cert => <CertificateCard {...cert} />);
+
+// Display all testimonials
+testimonials.map(test => <TestimonialCard {...test} />);
+```
+
+**Testimonial Sources:**
+- PayPal Director of Product Management
+- LTIMindtree Senior Specialist
+- Rungila CEO (Client)
+- Leidos Automation Architect (Client)
+- Tevatel CTO (Former Director)
+- Unitch Senior Developer (Colleague)
+
+### Benefits of Centralized Data
+
+1. **Single Source of Truth** - All content in one place
+2. **Type Safety** - TypeScript interfaces prevent errors
+3. **Easy Updates** - Modify content without touching components
+4. **Reusability** - Same data used across multiple pages
+5. **Scalability** - Easy to add new projects/certificates
+6. **Version Control** - Track content changes in Git
+
+---
+
+## API Routes
+
+### Contact Form API (`/src/app/api/contact/route.ts`)
+
+**Type:** Next.js API Route (POST)
+**Purpose:** Handle contact form submissions via Web3Forms
+
+**Functionality:**
+
+- Receives form data from contact page
+- Validates required fields (name, email, subject, message)
+- Submits to Web3Forms API for email delivery
+- Returns success/error response to client
+
+**Request Format:**
+
+```json
+POST /api/contact
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "subject": "Project Inquiry",
+  "message": "I'd like to discuss..."
+}
+```
+
+**Response Format:**
+
+```json
+// Success
+{
+  "success": true,
+  "message": "Message sent successfully!"
+}
+
+// Error
+{
+  "success": false,
+  "message": "All fields are required"
+}
+```
+
+**Implementation:**
+
+```tsx
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  const { name, email, subject, message } = body;
+
+  // Validation
+  if (!name || !email || !subject || !message) {
+    return NextResponse.json(
+      { success: false, message: 'All fields are required' },
+      { status: 400 }
+    );
+  }
+
+  // Submit to Web3Forms
+  const formData = new FormData();
+  formData.append('access_key', apiKey);
+  formData.append('name', name);
+  formData.append('email', email);
+  formData.append('subject', subject);
+  formData.append('message', message);
+
+  const response = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    body: formData,
+  });
+
+  // Handle response...
+}
+```
+
+**Environment Variables:**
+
+```bash
+WEB3FORMS_ACCESS_KEY=your_api_key_here
+```
+
+**Web3Forms Features:**
+
+- Free email delivery service
+- No backend infrastructure needed
+- Spam protection included
+- Customizable email templates
+- Delivery notifications
+- Response tracking
+
+**Error Handling:**
+
+- Field validation (400 error)
+- API failure handling (500 error)
+- Network error catching
+- User-friendly error messages
 
 ---
 
@@ -751,12 +1134,26 @@ import About from "@/components/About";
 
 ### Environment Variables
 
-Currently not used, but for future backend integration:
+**Current Usage:**
 
 ```bash
 # .env.local
+WEB3FORMS_ACCESS_KEY=your_web3forms_api_key
+```
+
+**Web3Forms Integration:**
+- Contact form submissions are sent to Web3Forms API
+- API key can be set via environment variable or uses default
+- Handles email delivery for contact form
+- See: `/src/app/api/contact/route.ts`
+
+**For Future Backend Integration:**
+
+```bash
+# Additional variables for future features
 NEXT_PUBLIC_API_URL=your_api_url
-SENDGRID_API_KEY=your_sendgrid_key
+SENDGRID_API_KEY=your_sendgrid_key (if switching from Web3Forms)
+DATABASE_URL=your_database_url
 ```
 
 ---
@@ -1091,48 +1488,57 @@ CMD ["npm", "start"]
 
 ## Future Enhancements
 
-### Planned Features
+### Completed Features ✅
 
 1. **Backend Integration**
-
-   - Add API route for contact form (`/src/app/api/contact/route.ts`)
-   - Email service integration (SendGrid, Resend, Nodemailer)
-   - Form validation with Zod or Yup
+   - ✅ Contact form API route (`/src/app/api/contact/route.ts`)
+   - ✅ Web3Forms email service integration
+   - ✅ Form validation (client-side)
 
 2. **Content Additions**
+   - ✅ Credentials page with certifications and testimonials
+   - ✅ Project detail pages (7 complete case studies)
+   - ✅ Privacy and Terms pages
+
+3. **Data Management**
+   - ✅ Centralized project data (`/src/data/projects.ts`)
+   - ✅ Centralized credentials data (`/src/data/credentials.ts`)
+
+### Planned Features
+
+1. **Future Enhancements**
 
    - Blog section with MDX support
-   - Testimonials carousel
-   - Resume download button
-   - Project case study pages
-
-3. **Features**
-
-   - Dark/light mode toggle (optional, currently dark-only)
-   - Search functionality
-   - Filter projects by technology
+   - Resume download button with PDF generation
    - Analytics integration (Vercel Analytics, Google Analytics)
+   - Dark/light mode toggle (currently dark-only)
+   - Search functionality for projects
+   - Filter projects by technology/domain
 
-4. **Performance**
+2. **Performance Optimizations**
 
-   - Image optimization with next/image
-   - Lazy loading for projects
+   - ✅ Image optimization with next/image (partially implemented)
+   - Lazy loading for project screenshots
+   - Progressive image loading
    - Code splitting improvements
    - Font optimization
 
-5. **SEO**
+3. **SEO Improvements**
    - Add sitemap.xml
    - Add robots.txt
-   - Schema.org markup
-   - Per-page meta tags
+   - Schema.org markup for projects
+   - Per-page meta tags and Open Graph tags
+   - Structured data for credentials
 
-### Known Issues
+### Known Issues & Notes
 
-- Profile image not currently displayed
-- Social media links point to generic URLs (need updating)
-- No actual form submission backend
-- Unused `vanta.clouds.min.js` file
-- Potential duplicate `globals.css` at root
+- ~~Profile image not currently displayed~~ (Not needed - using Hero section)
+- ✅ Social media links updated (GitHub, LinkedIn working)
+- ✅ Contact form backend implemented (Web3Forms API)
+- Unused `vanta.clouds.min.js` file (can be removed)
+- Some project screenshots use external URLs (consider hosting locally)
+- Certificate PDFs located in `/public/assets/images/certificates/`
+- Web3Forms API key hardcoded in route.ts (should use env variable)
 
 ---
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaStackOverflow, FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -172,17 +172,44 @@ export default function ContactPage() {
                   </p>
                 </div>
               </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="flex gap-4"
+              >
+                <div className="flex-shrink-0">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-[#67f8f7]/10">
+                    <span className="text-[#67f8f7] text-xl">📄</span>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-[#67f8f7]">Resume</h3>
+                  <a
+                    href="/assets/pdf/Lokesh-Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-[#67f8f7] transition-all"
+                  >
+                    Download Resume (PDF)
+                  </a>
+                </div>
+              </motion.div>
             </div>
 
             {/* Social Links */}
             <div className="pt-8 border-t border-[#67f8f7]/20">
               <h3 className="text-lg font-semibold text-[#67f8f7] mb-4">Connect on Social</h3>
-              <div className="flex gap-4">
-                <a href="https://github.com/lokisanhitleson" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all">
-                  GitHub
+              <div className="flex flex-wrap gap-4">
+                <a href="https://github.com/lokisanhitleson" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all flex items-center gap-2">
+                  <FaGithub /> GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/lokeshtofficial" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all">
-                  LinkedIn
+                <a href="https://www.linkedin.com/in/lokeshtofficial" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all flex items-center gap-2">
+                  <FaLinkedin /> LinkedIn
+                </a>
+                <a href="https://stackoverflow.com/users/3578712/lokesh-t" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-[#1a3e4a] text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-[#67f8f7] transition-all flex items-center gap-2">
+                  <FaStackOverflow /> Stack Overflow
                 </a>
               </div>
             </div>
