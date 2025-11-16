@@ -42,14 +42,16 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* Resume Button */}
           <div className="hidden md:block">
-            <Link
-              href="/contact"
+            <a
+              href="/assets/pdf/Lokesh-Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-3 bg-opposite-gradient rounded-lg hover:bg-primary/5 transition-all font-semibold"
             >
-              Get In Touch
-            </Link>
+              Resume
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -80,13 +82,15 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/contact"
+              <a
+                href="/assets/pdf/Lokesh-Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-4 py-2 bg-accent text-primary rounded-lg hover:bg-accent/90 transition-all font-medium mx-4"
                 onClick={() => setIsOpen(false)}
               >
-                Get In Touch
-              </Link>
+                Resume
+              </a>
             </div>
           </div>
         )}

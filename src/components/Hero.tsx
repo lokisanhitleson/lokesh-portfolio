@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaArrowRight, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaArrowRight, FaGithub, FaLinkedin, FaEnvelope, FaStackOverflow } from "react-icons/fa";
 
 declare global {
   interface Window {
@@ -163,6 +163,14 @@ export default function Hero() {
                 className="p-3 rounded-lg bg-secondary hover:bg-accent hover:text-white transition-all text-primary text-xl"
               >
                 <FaLinkedin />
+              </a>
+              <a
+                href="https://stackoverflow.com/users/3578712/lokesh-t"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-lg bg-secondary hover:bg-accent hover:text-white transition-all text-primary text-xl"
+              >
+                <FaStackOverflow />
               </a>
               <a
                 href="mailto:lokesh603@gmail.com"

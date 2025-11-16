@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 
 export default function About() {
   const skills = [
-    { category: "Frontend", items: ["React", "React Native", "Angular", "TypeScript", "Tailwind CSS", "Next.js"] },
+    { category: "Frontend", items: ["React", "Angular", "TypeScript", "Tailwind CSS", "Next.js", "HTML/CSS"] },
+    { category: "Mobile Apps", items: ["React Native", "Ionic", "Cordova", "Capacitor"] },
     { category: "Backend", items: ["Node.js", "Express", "Hapi.js", "PHP", "Python", "RESTful APIs"] },
     { category: "Databases", items: ["MongoDB", "MySQL", "Redis", "Firebase", "GraphQL"] },
     { category: "DevOps & Cloud", items: ["AWS", "Docker", "Nginx", "Ubuntu", "Apache", "CI/CD"] },
-    { category: "Advanced", items: ["Web3", "Solidity", "OpenAI API", "Llama API", "System Design"] },
+    { category: "Advanced", items: ["Web3", "Solidity", "OpenAI API", "Llama API", "TCP sockets", "System Design"] },
   ];
 
   const highlights = [
