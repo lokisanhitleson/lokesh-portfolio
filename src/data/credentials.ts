@@ -1,7 +1,13 @@
 export interface Certificate {
   id: number;
   title: string;
-  issuer: "AWS" | "HackerRank" | "Google" | "Microsoft" | "MongoDB";
+  issuer:
+    | "AWS"
+    | "HackerRank"
+    | "Google"
+    | "Microsoft"
+    | "MongoDB"
+    | "GeeksForGeeks";
   logo: string;
   description: string;
   pdfUrl: string;
@@ -179,6 +185,31 @@ export const certificates: Certificate[] = [
       "Data Structure Traversal",
       "Algorithm Implementation",
       "Problem Solving",
+    ],
+  },
+  {
+    id: 9,
+    title:
+      "MongoDB Developer's Toolkit: CRUD Mastery with Node.js, Java, Python, C#",
+    issuer: "GeeksForGeeks",
+    logo: "/assets/images/certificate-logo/geeksforgeeks-cert-logo.jpeg",
+    description:
+      "This comprehensive course, a collaboration between GeeksForGeeks and MongoDB, teaches database management across multiple programming languages. The 10-week bootcamp covers fundamental MongoDB concepts through advanced optimization techniques, including CRUD operations, data aggregation, indexing strategies, and data modeling. Designed for beginners to advanced learners, the course provides hands-on labs, comprehensive study materials, and an industry-recognized certification.",
+    pdfUrl:
+      "/assets/images/certificates/MongoDB Developer's Toolkit - CRUD Mastery with NodeJs Java Python C.pdf",
+    date: "January 2025",
+    skills: [
+      "MongoDB",
+      "CRUD Operations",
+      "NoSQL Databases",
+      "Data Aggregation",
+      "Indexing Strategies",
+      "Data Modeling",
+      "Node.js",
+      "Java",
+      "Python",
+      "C#",
+      "Database Optimization",
     ],
   },
 ];
